@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itacoatiara: Encantos da Amazônia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Paleta de Cores Nova (Inspirada na Amazônia, ainda clara e moderna) */
+        :root {
+            --cor-fundo-claro: #F8FBF8; /* Verde bem suave */
+            --cor-fundo-secao: #EAF7ED; /* Verde água claro */
+            --cor-texto-principal: #2C3E50; /* Azul escuro quase preto */
+            --cor-titulo-principal: #1A5276; /* Azul petróleo */
+            --cor-destaque-verde: #2ECC71; /* Verde esmeralda */
+            --cor-destaque-azul: #3498DB; /* Azul céu */
+            --cor-borda: #BDC3C7; /* Cinza suave */
+            --cor-branco: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif; /* Fonte moderna */
+            background-color: var(--cor-fundo-claro);
+            color: var(--cor-texto-principal);
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+            scroll-behavior: smooth; /* Rolagem suave */
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--cor-branco);
+            color: var(--cor-titulo-principal);
+            padding: 15px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        nav .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: var(--cor-titulo-principal);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        nav .logo i {
+            color: var(--cor-destaque-verde);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            color: var(--cor-texto-principal);
+            text-decoration: none;
+            padding: 10px 18px;
+            display: block;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--cor-destaque-azul);
+        }
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--cor-destaque-azul);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        nav ul li a:hover::after {
+            width: calc(100% - 30px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('https://via.placeholder.com/1800x600/2ECC71/FFFFFF?text=Vista+Panorâmica+de+Itacoatiara') no-repeat center center/cover;
+            color: var(--cor-texto-principal);
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.6); /* Overlay para clarear a imagem */
+            z-index: 1;
+        }
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h2 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            color: var(--cor-titulo-principal);
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            color: var(--cor-texto-principal);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Seções de Conteúdo */
+        section {
+            padding: 80px 0;
+        }
+
+        section:nth-child(even) {
+            background-color: var(--cor-fundo-secao);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h3 {
+            font-size: 2.8em;
+            color: var(--cor-titulo-principal);
+            display: inline-block;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title h3::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--cor-destaque-verde);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        .section-title p {
+            font-size: 1.1em;
+            color: var(--cor-secundaria);
+            max-width: 700px;
+            margin: 15px auto 0;
+        }
+
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .info-card {
+            background-color: var(--cor-branco);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            text-align: center;
+            border: 1px solid var(--cor-borda);
+        }
+
+        .info-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .info-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 1px solid var(--cor-borda);
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-content h4 {
+            color: var(--cor-destaque-azul);
+            font-size: 1.6em;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .card-content p {
+            color: var(--cor-texto-principal);
+            font-size: 1em;
+            margin-bottom: 15px;
+        }
+        .card-content ul {
+            text-align: left;
+            padding-left: 20px;
+            margin: 0;
+            list-style: disc;
+        }
+        .card-content ul li {
+            margin-bottom: 8px;
+            color: var(--cor-texto-principal);
+        }
+
+        /* Tabela da Economia */
+        .economic-table-wrapper {
+            overflow-x: auto;
+            margin-top: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 0;
+            border-radius: 10px;
+            overflow: hidden; /* Para garantir bordas arredondadas */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        table th, table td {
+            padding: 18px 25px;
+            text-align: left;
+            border-bottom: 1px solid var(--cor-borda);
+        }
+
+        table th {
+            background-color: var(--cor-titulo-principal);
+            color: var(--cor-branco);
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+
+        table tr:nth-child(even) {
+            background-color: var(--cor-fundo-claro);
+        }
+        table tr:nth-child(odd) {
+            background-color: var(--cor-branco);
+        }
+        table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        /* Video Responsivo */
+        .video-wrapper {
+            margin-top: 50px;
+            text-align: center;
+        }
+        .video-wrapper h4 {
+            font-size: 1.8em;
+            color: var(--cor-titulo-principal);
+            margin-bottom: 25px;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 900px; /* Limite de largura para o vídeo */
+            margin: 0 auto;
+            background-color: #000;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Galeria de Imagens */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            background-color: var(--cor-branco);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-item .caption {
+            padding: 15px;
+            font-size: 0.95em;
+            color: var(--cor-texto-principal);
+            text-align: center;
+            background-color: var(--cor-fundo-claro);
+            border-top: 1px solid var(--cor-borda);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--cor-titulo-principal);
+            color: var(--cor-branco);
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 60px;
+            font-size: 0.9em;
+            position: relative;
+            overflow: hidden;
+        }
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(46, 204, 113, 0.1), rgba(52, 152, 219, 0.1));
+            z-index: 0;
+        }
+        footer .container {
+            position: relative;
+            z-index: 1;
+        }
+        footer p {
+            margin: 0;
+            padding: 5px 0;
+        }
+        footer a {
+            color: var(--cor-destaque-verde);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        footer a:hover {
+            color: var(--cor-branco);
+        }
+
+        /* Keyframes para Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Media Queries para Responsividade */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 3em;
+            }
+            .section-title h3 {
+                font-size: 2.4em;
+            }
+            .content-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav ul {
+                justify-content: center;
+            }
+            .hero {
+                padding: 60px 0;
+            }
+            .hero h2 {
+                font-size: 2.5em;
+            }
+            .hero p {
+                font-size: 1.1em;
+            }
+            .section-title h3 {
+                font-size: 2em;
+            }
+            section {
+                padding: 50px 0;
+            }
+            .info-card {
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            nav .logo {
+                font-size: 1.5em;
+            }
+            nav ul li a {
+                padding: 8px 10px;
+                font-size: 0.9em;
+            }
+            .hero h2 {
+                font-size: 2em;
+            }
+            .hero p {
+                font-size: 1em;
+            }
+            .section-title h3 {
+                font-size: 1.8em;
+            }
+            table th, table td {
+                padding: 12px 15px;
+                font-size: 0.9em;
+            }
+            .card-content h4 {
+                font-size: 1.4em;
+            }
+            .video-container {
+                padding-bottom: 75%; /* Mais quadrado para telas pequenas */
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo"><i class="fas fa-water"></i> Itacoatiara Online</div>
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#historia">História</a></li>
+                    <li><a href="#economia">Economia</a></li>
+                    <li><a href="#cultura">Cultura</a></li>
+                    <li><a href="#galeria">Galeria</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="container">
+            <h2>Bem-vindo a Itacoatiara, Amazonas</h2>
+            <p>Descubra a riqueza cultural, histórica e econômica da vibrante "Cidade da Pedra Pintada", um portal para os encantos da Amazônia.</p>
+        </div>
+    </section>
+
+    <section id="historia">
+        <div class="container">
+            <div class="section-title">
+                <h3><i class="fas fa-book-open"></i> Raízes na Pedra: A História</h3>
+                <p>Mergulhe no passado de Itacoatiara, desde as misteriosas inscrições rupestres até sua consolidação como polo amazônico.</p>
+            </div>
+            
+            <div class="content-grid">
+                <div class="info-card">
+                    <img src="https://www.noamazonaseraassim.com.br/wp-content/uploads/2018/11/itacoatiara.jpg">
+                    <div class="card-content">
+                        <h4>Significado do Nome</h4>
+                        <p>O nome "Itacoatiara" provém do Tupi-Guarani, significando "Pedra Pintada" ou "Pedra Escrita". Essa denominação honra as **fascinantes inscrições rupestres** encontradas em suas margens, testemunhos de civilizações ancestrais.</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <img src="https://www.noamazonaseraassim.com.br/wp-content/uploads/2018/11/itacoatiara-2-1024x700.jpg" alt="Mapa antigo da região amazônica com assentamentos jesuítas">
+                    <div class="card-content">
+                        <h4>Fundação e Evolução</h4>
+                        <p>A história moderna da cidade começa em **1683** com a fundação por padres jesuítas, inicialmente como Vila de Serpa. Em **25 de abril de 1874**, alcançou o status de cidade, reafirmando sua importância estratégica no coração da Amazônia.</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <img src="https://s2-g1.glbimg.com/str-2h7tqQwcvwDmjg92KWWt_78=/1280x0/filters:format(jpeg)/https://i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2021/k/v/dSlRrWRHu0MMKvJ1rM1w/whatsapp-image-2021-09-11-at-13.21.33.jpeg">
+                    <div class="card-content">
+                        <h4>Localização Privilegiada</h4>
+                        <p>Situada às margens do grandioso **Rio Amazonas**, Itacoatiara é o município **mais populoso do interior** do estado, servindo como um vital elo de ligação e desenvolvimento regional.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="economia">
+        <div class="container">
+            <div class="section-title">
+                <h3><i class="fas fa-ship"></i> Porto e Progresso: A Economia</h3>
+                <p>Conheça o motor econômico de Itacoatiara, um porto crucial para o agronegócio brasileiro e um polo industrial em crescimento.</p>
+            </div>
+
+            <div class="economic-table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Foco Econômico</th>
+                            <th>Importância e Detalhes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>**Porto Graneleiro**</td>
+                            <td>Um dos **maiores portos fluviais do Brasil**, essencial para o escoamento de **soja e outros grãos** do Centro-Oeste via hidrovias amazônicas para o mercado internacional.</td>
+                        </tr>
+                        <tr>
+                            <td>**Indústria Local**</td>
+                            <td>Diversificada, com destaque para os setores **alimentício**, **madeireiro** e de **material de construção**, gerando empregos e valor agregado.</td>
+                        </tr>
+                        <tr>
+                            <td>**Polo Regional**</td>
+                            <td>Itacoatiara é reconhecida como a **segunda maior economia do Amazonas**, atuando como um centro vibrante de comércio e serviços para toda a região do Baixo Amazonas.</td>
+                        </tr>
+                        <tr>
+                            <td>**Agropecuária**</td>
+                            <td>Setor forte, com produção relevante de **gado, pesca e culturas agrícolas** que abastecem a região e o estado.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section id="cultura">
+        <div class="container">
+            <div class="section-title">
+                <h3><i class="fas fa-mask"></i> Ritmo e Natureza: Cultura e Turismo</h3>
+                <p>Explore as festividades vibrantes e os cenários naturais que fazem de Itacoatiara um destino único no coração da Amazônia.</p>
+            </div>
+            
+            <div class="content-grid">
+                <div class="info-card">
+                    <img src="https://amazonasatual.com.br/wp-content/uploads/2023/07/Fecani-2018.jpg">
+                    <div class="card-content">
+                        <h4>Festival da Canção (FECANI)</h4>
+                        <p>O FECANI é o maior e mais tradicional festival de música da Região Norte, um verdadeiro espetáculo cultural que celebra a arte e a identidade amazônica anualmente em setembro.</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <img src="https://www.fapeam.am.gov.br/wp-content/uploads/2023/10/FAPEAM_Inova_Itacoatiara_Foto_Arquivo_Secom_1.jpeg" alt="Avenida Parque de Itacoatiara">
+                    <div class="card-content">
+                        <h4>Patrimônios e Lazer</h4>
+                        <p>Visite a majestosa **Catedral de Nossa Senhora do Rosário**, passeie pela charmosa **Avenida Parque** (inspirada em Paris) e contemple o pôr do sol inesquecível do **Mirante**, com vista para o Rio Amazonas.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-wrapper">
+                <h4><i class="fas fa-video"></i> Assista: Conheça Itacoatiara!</h4>
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/hR9mDD4bECE?autoplay=0&mute=0&rel=0&modestbranding=1&controls=1" 
+                        title="CONHEÇA A CIDADE DE ITACOATIARA-AM" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <section id="galeria">
+        <div class="container">
+            <div class="section-title">
+                <h3><i class="fas fa-camera-retro"></i> Galeria de Itacoatiara</h3>
+                <p>Uma coleção de imagens que capturam a beleza e o dinamismo da nossa cidade.</p>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://cdn.prod.website-files.com/632c5d06b7235f718a705f20/68efe2f12b9eea9435499e9a_6333358ad5ea92a4ba40cd55_descubra_itacoatiara_cidade_itpac.jpeg" alt="Vista do Rio Amazonas em Itacoatiara">
+                    <div class="caption">Vista panorâmica do Rio Amazonas</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://www.idam.am.gov.br/wp-content/uploads/2017/03/20170128_bzanardo_Feira_ADS_Cassam_28043-1-1.jpg" alt="Feira local de produtos regionais">
+                    <div class="caption">Cores e sabores da Feira Municipal</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNl-zX2lY69OaFSEoSp3Ah83Q5v58Wk4Gdbg&s" alt="Pôr do sol no rio">
+                    <div class="caption">Pôr do sol mágico no horizonte amazônico</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://prelaziadeitacoatiara.org.br/imagens/paroquia/-r-adamastor-de-figueiredo-185-centro-19-06-2024-12-04-03.jpg">
+                    <div class="caption">Imponência da Catedral</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://prefeituradeitacoatiara.com.br/wp-content/uploads/2024/01/01.jpg" alt="Detalhe da Avenida Parque">
+                    <div class="caption">Detalhes da charmosa Avenida Parque</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://amazonasatual.com.br/wp-content/uploads/2024/07/Chibatao-2.jpeg" alt="Navio no Porto Graneleiro">
+                    <div class="caption">Movimentação no Porto Graneleiro</div>
+		</div>
+		<div class="gallery-item">
+                    <img src="https://prefeituradeitacoatiara.com.br/wp-content/uploads/2024/01/12.jpg" alt="Pedra Pintada">
+                    <div class="caption">Pedra Pintada</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Projeto para apresentação escolar. Informações compiladas por IA. Imagens placeholder.</p>
+            <p>Descubra mais sobre Itacoatiara no <a href="https://www.itacoatiara.am.gov.br/" target="_blank">Site Oficial do Município</a>.</p>
+            <p>&copy; 2025 Itacoatiara: Encantos da Amazônia.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
